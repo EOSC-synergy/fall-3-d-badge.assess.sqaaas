@@ -1,0 +1,74 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.com/decube83/fall-3-d-badge:
+      branch: master
+      repo: https://gitlab.com/decube83/fall-3-d-badge
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge git:
+        commands:
+        - /usr/bin/env sh .sqa/script.queasy-peach-russel.sh
+        container: qc.acc_pasty-tangerine-albatross
+  QC.Doc:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-auburn-abyssinian.sh
+        container: qc.doc_lousy-ruby-heron
+      gitlab.com/decube83/fall-3-d-badge git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-maroon-akbash.sh
+        container: qc.doc_crabby-charcoal-scorpion
+      gitlab.com/decube83/fall-3-d-badge markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-cerulean-abyssinian.sh
+        container: qc.doc_surly-linen-otter
+  QC.Lic:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-olivine-vole.sh
+        container: qc.lic_baggy-orange-dingo
+  QC.Met:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.woolly-cerulean-starfish.sh
+        container: qc.met_randy-cinnamon-alligator
+  QC.Sec:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-celadon-baboon.sh
+        container: qc.sec_muzzy-buff-panda
+  QC.Sty:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.snoopy-razzmatazz-otter.sh
+        container: qc.sty_hazy-carmine-shrimp
+      gitlab.com/decube83/fall-3-d-badge jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.muzzy-yellow-tang.sh
+        container: qc.sty_freaky-lilac-loon
+  QC.Uni:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-denim-civet.sh
+        container: qc.uni_greasy-copper-ostrich
+  QC.Ver:
+    repos:
+      gitlab.com/decube83/fall-3-d-badge get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.snippy-lime-bear.sh
+        container: qc.ver_hasty-lavender-orangutan
+timeout: 5400
